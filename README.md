@@ -8,3 +8,4 @@ and can be found at https://hub.docker.com/u/ilios/
 
 - php-fpm
 - mysql
+- mysql-demo
