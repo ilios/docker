@@ -10,3 +10,4 @@ and can be found at https://hub.docker.com/u/ilios/
 - nginx
 - mysql
 - mysql-demo
+- php-fpm-dev
