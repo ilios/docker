@@ -7,5 +7,6 @@ and can be found at https://hub.docker.com/u/ilios/
 ### Contains:
 
 - php-fpm
+- nginx
 - mysql
 - mysql-demo
