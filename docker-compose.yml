@@ -14,15 +14,9 @@ services:
         image: ilios/php:v3.26.0
         expose:
             - "9000"
-        links:
-            - db
-        volumes:
-            - ./logs:/var/www/ilios/var/logs:rw
     web:
         image: ilios/nginx:v3.26.0
         ports:
             - "8000:80"
-        links:
-            - php
-        volumes_from:
-            - php
+        volumes:
+            - ./logs:/var/www/ilios/var/logs:rw
