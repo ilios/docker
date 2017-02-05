@@ -1,0 +1,16 @@
+version: '2'
+services:
+    db:
+        image: ilios/mysql-demo
+        ports:
+            - "17103:3306"
+    php:
+        image: ilios/php-dev
+        expose:
+            - "9000"
+    web:
+        image: ilios/nginx
+        ports:
+            - "8000:80"
+        volumes:
+            - ./logs:/var/www/ilios/var/logs:rw
