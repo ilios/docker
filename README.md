@@ -11,7 +11,7 @@ These sample files are not quite ready for production use, you will need to cust
 ## How can I try Ilios with these containers?
 - Clone or [download](https://github.com/ilios/docker/archive/master.zip) this repository
 - [Install](https://docs.docker.com/compose/install/) docker and docker-compose
-- run the command `docker-compose -d -f demo-docker-compose.yml up`
+- run the command `docker-compose -f demo-docker-compose.yml up -d`
 - After a few moments visit http://localhost:8000
 
 ## Containers for running Ilios
