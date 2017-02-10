@@ -5,7 +5,7 @@ services:
         ports:
             - "17103:3306"
     php:
-        image: ilios/php
+        image: ilios/php-dev
         expose:
             - "9000"
     web:
