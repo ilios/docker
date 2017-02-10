@@ -1,4 +1,4 @@
-FROM ilios/php:v3.26.0
+FROM ilios/php:latest
 
 MAINTAINER Ilios Project Team <support@iliosproject.org>
 
