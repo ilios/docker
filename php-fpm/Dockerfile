@@ -1,4 +1,4 @@
-FROM ilios/source:v3.26.0
+FROM ilios/source:v3.27.0
 
 MAINTAINER Ilios Project Team <support@iliosproject.org>
 
