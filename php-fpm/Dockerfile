@@ -1,4 +1,4 @@
-FROM ilios/source:v3.27.0
+FROM ilios/source:v3.28.1
 
 MAINTAINER Ilios Project Team <support@iliosproject.org>
 
@@ -83,7 +83,7 @@ RUN /usr/local/bin/composer install \
   --no-dev \
   --no-progress \
   --no-suggest \
-  --optimize-autoloader
+  --classmap-authoritative
 
 USER root
 CMD ["php-fpm", "-F"]
