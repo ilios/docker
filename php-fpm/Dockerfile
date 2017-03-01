@@ -83,7 +83,7 @@ RUN /usr/local/bin/composer install \
   --no-dev \
   --no-progress \
   --no-suggest \
-  --optimize-autoloader
+  --classmap-authoritative
 
 USER root
 CMD ["php-fpm", "-F"]
