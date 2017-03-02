@@ -85,6 +85,8 @@ RUN /usr/local/bin/composer install \
   --no-suggest \
   --classmap-authoritative
 
+RUN /var/www/ilios/bin/console ilios:maintenance:update-frontend
+
 USER root
 CMD ["php-fpm", "-F"]
 
