@@ -1,4 +1,4 @@
-FROM ilios/mysql:v3.32.0
+FROM ilios/mysql:v3.33.0
 
 # customized to install ilios demo database
 MAINTAINER Ilios Project Team <support@iliosproject.org>
