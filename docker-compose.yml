@@ -1,7 +1,7 @@
 version: '2'
 services:
     db:
-        image: ilios/mysql:v3.37.0
+        image: ilios/mysql:v3.37.1
         environment:
             - MYSQL_USER=ilios
             - MYSQL_PASSWORD=ilios
@@ -11,11 +11,11 @@ services:
         ports:
             - "17103:3306"
     php:
-        image: ilios/php:v3.37.0
+        image: ilios/php:v3.37.1
         expose:
             - "9000"
     web:
-        image: ilios/nginx:v3.37.0
+        image: ilios/nginx:v3.37.1
         ports:
             - "8000:80"
         volumes:
