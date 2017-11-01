@@ -11,6 +11,7 @@ RUN /usr/local/bin/composer install \
   --working-dir /var/www/ilios \
   --no-progress \
   --no-suggest \
+  --no-interaction \
   --optimize-autoloader
 RUN /var/www/ilios/bin/console ilios:maintenance:update-frontend
 
