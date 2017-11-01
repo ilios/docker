@@ -1,0 +1,23 @@
+---
+dist: trusty
+sudo: false
+
+matrix:
+  include:
+  - env: BUILD=mysql
+  - env: BUILD=mysql-demo
+  - env: BUILD=nginx
+  - env: BUILD=php-fpm
+  - env: BUILD=php-fpm-dev
+
+env:
+  matrix:
+  - BUILD=null
+
+install:
+  - cd $TRAVIS_BUILD_DIR/$BUILD
+  - docker build -t $BUILD .
+  - docker run -d --name $BUILD $BUILD
+
+script:
+  - docker ps | grep -q $BUILD
