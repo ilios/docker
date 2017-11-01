@@ -4,6 +4,7 @@ MAINTAINER Ilios Project Team <support@iliosproject.org>
 
 RUN apk add --update \
     curl \
+    tar \
     php7 \
     php7-fpm \
     php7-apcu \
@@ -15,6 +16,8 @@ RUN apk add --update \
     php7-pdo \
     php7-pdo_mysql \
     php7-xml \
+    php7-xmlreader \
+    php7-curl \
     php7-zlib \
     php7-phar \
     php7-mbstring \
@@ -69,6 +72,7 @@ ENV COMPOSER_HOME=/tmp \
   ILIOS_TIMEZONE='America/Los_Angeles' \
   ILIOS_FORCEPROTOCOL=http \
   ILIOS_KEEP_FRONTEND_UPDATED=true \
+  ILIOS_FRONTEND_RELEASE_VERSION=null \
   ILIOS_CAS_AUTHENTICATION_SERVER=null \
   ILIOS_CAS_AUTHENTICATION_VERSION=3 \
   ILIOS_CAS_AUTHENTICATION_VERIFY_SSL=true \
@@ -82,6 +86,7 @@ RUN /usr/local/bin/composer install \
   --prefer-dist \
   --no-dev \
   --no-progress \
+  --no-interaction \
   --no-suggest \
   --classmap-authoritative
 
