@@ -4,12 +4,8 @@ services:
         image: ilios/mysql-demo
         ports:
             - "17103:3306"
-    php:
-        image: ilios/php
-        expose:
-            - "9000"
     web:
-        image: ilios/nginx
+        image: ilios/php-apache
         ports:
             - "8000:80"
         volumes:
