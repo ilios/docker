@@ -20,8 +20,7 @@ These containers are auto built on the docker hub
 and can be found at https://hub.docker.com/u/ilios/
 ### Contains:
 
-- php-fpm
-- nginx
+- php-apache
 - mysql
 - mysql-demo
-- php-fpm-dev
+- php-apache-dev

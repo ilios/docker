@@ -6,9 +6,7 @@ matrix:
   include:
   - env: BUILD=mysql
   - env: BUILD=mysql-demo
-  - env: BUILD=nginx
-  - env: BUILD=php-fpm
-  - env: BUILD=php-fpm-dev
+  - env: BUILD=php-apache-dev
 
 env:
   matrix:

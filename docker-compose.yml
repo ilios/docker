@@ -10,12 +10,8 @@ services:
             - MYSQL_ROOT_PASSWORD=1234root5678
         ports:
             - "17103:3306"
-    php:
-        image: ilios/php:v3.41.0
-        expose:
-            - "9000"
     web:
-        image: ilios/nginx:v3.41.0
+        image: ilios/php-apache:v3.41.0
         ports:
             - "8000:80"
         volumes:
