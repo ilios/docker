@@ -5,8 +5,8 @@ services:
         ports:
             - "17103:3306"
     web:
+        environment:
+            - ILIOS_REQUIRE_SECURE_CONNECTION=false
         image: ilios/php-apache
         ports:
             - "8000:80"
-        volumes:
-            - ./logs:/var/www/ilios/var/logs:rw
