@@ -7,6 +7,25 @@ services:
     web:
         image: ilios/php-apache-dev
         environment:
+            - APP_ENV=dev
+            - APP_DEBUG=true
+            - ILIOS_DATABASE_URL=mysql://ilios:ilios@db/ilios
             - ILIOS_REQUIRE_SECURE_CONNECTION=false
+            - ILIOS_ERROR_CAPTURE_ENABLED=false
+            - ILIOS_ELASTICSEARCH_HOSTS=elasticsearch
+            - ILIOS_FILE_SYSTEM_STORAGE_PATH=/tmp
         ports:
             - "8000:80"
+    elasticsearch:
+        image: elasticsearch:6.5.4
+        environment:
+            - http.cors.enabled=true
+            - http.cors.allow-origin=http://localhost:1358
+            - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+            - http.cors.allow-credentials=true
+        ports:
+            - "9200:9200"
+    searchui:
+        image: appbaseio/dejavu
+        ports:
+            - "1358:1358"
