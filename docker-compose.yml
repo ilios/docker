@@ -12,7 +12,15 @@ services:
             - "17103:3306"
     web:
         image: ilios/php-apache:v3.64.1
+        environment:
+            - ILIOS_DATABASE_URL=mysql://ilios:ilios@db/ilios
+            - ILIOS_ERROR_CAPTURE_ENABLED=false
+            - ILIOS_ELASTICSEARCH_HOSTS=elasticsearch
         ports:
             - "8000:80"
         volumes:
             - ./logs:/var/www/ilios/var/logs:rw
+    elasticsearch:
+        image: elasticsearch:6.5.4
+        ports:
+            - "9200:9200"

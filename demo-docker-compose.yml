@@ -7,6 +7,13 @@ services:
     web:
         environment:
             - ILIOS_REQUIRE_SECURE_CONNECTION=false
+            - ILIOS_DATABASE_URL=mysql://ilios:ilios@db/ilios
+            - ILIOS_ERROR_CAPTURE_ENABLED=false
+            - ILIOS_ELASTICSEARCH_HOSTS=elasticsearch
         image: ilios/php-apache
         ports:
             - "8000:80"
+    elasticsearch:
+        image: elasticsearch:6.5.4
+        ports:
+            - "9200:9200"
