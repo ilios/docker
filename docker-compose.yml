@@ -1,7 +1,7 @@
 version: '2'
 services:
     db:
-        image: ilios/mysql:v3.64.1
+        image: ilios/mysql:v3.67.0
         environment:
             - MYSQL_USER=ilios
             - MYSQL_PASSWORD=ilios
@@ -11,7 +11,7 @@ services:
         ports:
             - "17103:3306"
     web:
-        image: ilios/php-apache:v3.64.1
+        image: ilios/php-apache:v3.67.0
         environment:
             - ILIOS_DATABASE_URL=mysql://ilios:ilios@db/ilios
             - ILIOS_ERROR_CAPTURE_ENABLED=false
