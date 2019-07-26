@@ -1,3 +1,3 @@
-FROM ilios/php-apache:v3.67.0
+FROM ilios/php-apache:v3
 
 MAINTAINER Ilios Project Team <support@iliosproject.org>
