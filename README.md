@@ -24,3 +24,4 @@ and can be found at https://hub.docker.com/u/ilios/
 - mysql
 - mysql-demo
 - php-apache-dev
+- ssh-admin
