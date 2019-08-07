@@ -2,6 +2,9 @@ FROM ilios/php-apache:v3
 
 MAINTAINER Ilios Project Team <support@iliosproject.org>
 
+# semi-colon seperates list of github users that can SSH in
+ENV GITHUB_ACCOUNT_SSH_USERS=''
+
 RUN apt-get update && \
     apt-get install -y wget openssh-server sudo netcat && \
     rm -rf /var/lib/apt/lists/* && \
@@ -16,12 +19,9 @@ RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/s
 # allow users in the sudo group to do wo without a password
 RUN /bin/echo "%sudo ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/no-password-group
 
-# Copy and run our user creation script
-ARG GITHUB_ACCOUNT_SSH_USERS=''
-COPY add-ssh-users.sh /tmp/add-ssh-users.sh
-RUN /bin/bash /tmp/add-ssh-users.sh
+COPY entrypoint.sh /entrypoint.sh
 
 EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
+ENTRYPOINT /entrypoint.sh
 
 HEALTHCHECK CMD nc -vz 127.0.0.1 22 || exit 1

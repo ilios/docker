@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euf -o pipefail
 
+/bin/echo "Entrypoint ssh-admin container"
+
 if [[ $GITHUB_ACCOUNT_SSH_USERS ]]; then
 	# keep a copy of the default file seperator
 	ORIGINAL_IFS=$IFS
@@ -9,10 +11,11 @@ if [[ $GITHUB_ACCOUNT_SSH_USERS ]]; then
 	IFS=';'
 	for user in $GITHUB_ACCOUNT_SSH_USERS
 	do
+			/bin/echo "Creating account for user ${user}"
 			SSH_DIR="/home/$user/.ssh"
 			/usr/sbin/useradd -ms /bin/bash -G sudo $user
 			/bin/mkdir $SSH_DIR
-			/usr/bin/wget -O - "https://github.com/${user}.keys" >> "${SSH_DIR}/authorized_keys"
+			/usr/bin/wget --quiet -O - "https://github.com/${user}.keys" >> "${SSH_DIR}/authorized_keys"
 			/bin/chown -R "${user}:${user}" $SSH_DIR
 			/bin/chmod 700 $SSH_DIR
 			/bin/chmod 600 "${SSH_DIR}/authorized_keys"
@@ -20,3 +23,7 @@ if [[ $GITHUB_ACCOUNT_SSH_USERS ]]; then
 
 	IFS=$ORIGINAL_IFS
 fi
+
+/bin/echo "Starting ssh server"
+
+/usr/sbin/sshd -D
