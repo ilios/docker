@@ -7,11 +7,11 @@ matrix:
   - env: BUILD=mysql
   - env: BUILD=mysql-demo
   - env: BUILD=php-apache-dev
-  - env: BUILD=ssh-admin
+  - env: BUILD=ssh-admin HEALTHCHECK=true
 
 env:
   matrix:
-  - BUILD=null
+  - BUILD=null HEALTHCHECK=false
 
 install:
   - cd $TRAVIS_BUILD_DIR/$BUILD
@@ -20,3 +20,4 @@ install:
 
 script:
   - docker ps | grep -q $BUILD
+  - while [[ $HEALTHCHECK && "`docker inspect -f {{.State.Health.Status}} $BUILD`" != "healthy" ]]; do sleep 2; done
