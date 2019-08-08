@@ -16,6 +16,9 @@ RUN mkdir /run/sshd
 # Remove password based authentication for SSH
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 
+# Pass environmental variables to SSH sessions
+RUN sed -i 's/#PermitUserEnvironment no/PermitUserEnvironment yes/' /etc/ssh/sshd_config
+
 # allow users in the sudo group to do wo without a password
 RUN /bin/echo "%sudo ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/no-password-group
 
