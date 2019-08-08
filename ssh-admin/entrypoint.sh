@@ -1,6 +1,10 @@
 #!/bin/bash
 set -euf -o pipefail
 
+# Export out ENV from docker into a place where SSH users can read them
+/bin/echo 'Dumping environmental variables to /etc/environment'
+/usr/bin/env | /bin/grep _ >> /etc/environment
+
 /bin/echo "Entrypoint ssh-admin container"
 
 if [[ $GITHUB_ACCOUNT_SSH_USERS ]]; then
