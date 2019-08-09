@@ -1,9 +1,11 @@
 #!/bin/bash
 set -euf -o pipefail
 
-# Export out ENV from docker into a place where SSH users can read them
-/bin/echo 'Dumping environmental variables to /etc/environment'
-/usr/bin/env | /bin/grep _ >> /etc/environment
+# Export out ENV out so symfony can read them
+/bin/echo 'Dumping ILIOS environmental variables for symfony'
+/usr/bin/env | /bin/grep APP_ENV >> /var/www/ilios/.env.local
+/usr/bin/env | /bin/grep ILIOS_ >> /var/www/ilios/.env.local
+/usr/bin/composer --working-dir=/var/www/ilios dump-env prod
 
 /bin/echo "Entrypoint ssh-admin container"
 
