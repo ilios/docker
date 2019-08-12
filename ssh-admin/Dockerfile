@@ -6,7 +6,7 @@ MAINTAINER Ilios Project Team <support@iliosproject.org>
 ENV GITHUB_ACCOUNT_SSH_USERS=''
 
 RUN apt-get update && \
-    apt-get install -y wget openssh-server sudo netcat && \
+    apt-get install -y wget openssh-server sudo netcat mysql-client && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get autoremove -y
 
