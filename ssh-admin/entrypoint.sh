@@ -32,7 +32,10 @@ fi
 
 /bin/echo "Starting ssh server"
 /usr/sbin/sshd -D &
+/bin/echo "Starting frontend-update service..."
 /update_ilios_frontend_loop.sh &
-/update_ilios_search_index_loop.sh
+/bin/echo "Starting search-index services..."
+/update_ilios_search_index_loop.sh &
 
+/bin/echo "Moving sshd process back to foreground to accept SSH connections..."
 fg %1
