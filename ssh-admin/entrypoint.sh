@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euf -o pipefail
+set -m -euf -o pipefail
 
 # Export out ENV out so symfony can read them
 /bin/echo 'Dumping ILIOS environmental variables for symfony'
@@ -31,5 +31,11 @@ if [[ $GITHUB_ACCOUNT_SSH_USERS ]]; then
 fi
 
 /bin/echo "Starting ssh server"
+/usr/sbin/sshd -D &
+/bin/echo "Starting frontend-update service..."
+/update_ilios_frontend_loop.sh &
+/bin/echo "Starting search-index services..."
+/update_ilios_search_index_loop.sh &
 
-/usr/sbin/sshd -D
+/bin/echo "Moving sshd process back to foreground to accept SSH connections..."
+fg %1

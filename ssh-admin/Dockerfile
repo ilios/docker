@@ -6,7 +6,7 @@ MAINTAINER Ilios Project Team <support@iliosproject.org>
 ENV GITHUB_ACCOUNT_SSH_USERS=''
 
 RUN apt-get update && \
-    apt-get install -y wget openssh-server sudo netcat mysql-client && \
+    apt-get install -y wget openssh-server sudo netcat mysql-client vim telnet && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get autoremove -y
 
@@ -22,8 +22,16 @@ RUN sed -i 's/#PermitUserEnvironment no/PermitUserEnvironment yes/' /etc/ssh/ssh
 # allow users in the sudo group to do wo without a password
 RUN /bin/echo "%sudo ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/no-password-group
 
+# initialize the log files for the loop processes
+RUN /bin/touch /tmp/ilios_frontend_updates.log
+RUN /bin/touch /tmp/ilios_search_index_updates.log
+
+# copy over the script files that will run the processess
+COPY update_ilios_frontend_loop.sh /update_ilios_frontend_loop.sh
+COPY update_ilios_search_index_loop.sh /update_ilios_search_index_loop.sh
 COPY entrypoint.sh /entrypoint.sh
 
+# expose the ssh port
 EXPOSE 22
 ENTRYPOINT /entrypoint.sh
 
