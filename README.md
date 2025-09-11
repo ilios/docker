@@ -1,5 +1,9 @@
 # Ilios Docker
 
+# Archived
+
+This repository has been archived, all ilios docker images can be found in the [main ilios repository](https://github.com/ilios/ilios).
+
 ## What is the purpose of this?
 
 This repository is the home for the official Ilios Docker images as well as some sample configurations for running these images in concert.
